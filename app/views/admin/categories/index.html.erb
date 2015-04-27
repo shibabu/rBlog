@@ -1,2 +1,16 @@
-<h1>Admin::Categories#index</h1>
-<p>Find me in app/views/admin/categories/index.html.erb</p>
+<h2 class="page-header">Manage Categories <%= link_to 'Add New', new_admin_category_path, class: 'btn btn-primary pull-right' %> </h2>
+<table class="table table-striped">
+  <tr>
+    <th>Category Name</th>
+    <th>Created at</th>
+    <th>Actions</th>
+  </tr>
+  <% @categories.each do |category| %>
+    <tr>
+      <td><%= category.name %></td>
+      <td><%= category.created_at.to_time.strftime '%B %e at %l:%M %p' %></td>
+      <td><%= link_to 'Edit', edit_admin_category_path(category), class: 'btn btn-primary' %>
+              <%= link_to 'Delete', admin_category_path(category), class: 'btn btn-danger', method: :delete, data: {confirm: 'Are You Sure?'} %> </td>
+    </tr>
+  <% end %>
+</table>

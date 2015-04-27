@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   get 'about', to: 'about#index'
 
-  get 'comments/new'
+  get 'comment', to: 'comments#new'
 
   get 'categories/show'
 

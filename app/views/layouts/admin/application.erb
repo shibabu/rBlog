@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RBlog</title>
+    <%= stylesheet_link_tag    'admin/application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'admin/application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default">
+      <%= render 'partials/admin/navbar' %>
+    </nav>
+
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+
+            <%= render 'partials/alerts' %>
+
+            <div class="well">
+              <%= yield %>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <%= render 'partials/footer' %>
+
+  </body>
+</html>
