@@ -1,4 +1,34 @@
 Rails.application.routes.draw do
+
+  root 'posts#index'
+
+  get 'contact', to: 'contacts#new'
+
+  post 'contact', to: 'contacts#create'
+
+  get 'about', to: 'about#index'
+
+  get 'comments/new'
+
+  get 'categories/show'
+
+  resources 'posts', only: [:index, :show]
+
+  namespace :admin do
+
+    resources 'sessions', only: [:new, :create]
+
+    resources 'users'
+
+    resources 'comments', only: :destroy
+
+    resources 'categories'
+
+    resources 'posts'
+
+  end
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
