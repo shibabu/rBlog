@@ -6,4 +6,8 @@ class Post < ActiveRecord::Base
   validates_presence_of :title, :category, :user, :image, :body
   validates_length_of :title, minimum: 5
   validates_length_of :body, minimum: 25
+
+  def self.search query
+    where "title like ? OR body like ?", "%#{query}%", "%#{query}%"
+  end
 end

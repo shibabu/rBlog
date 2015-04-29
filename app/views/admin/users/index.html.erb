@@ -18,6 +18,7 @@
       </tr>
     <% end %>
   </table>
+  <%= will_paginate @users %>
 <% else %>
-  <p>The are no users yet..</p>
+  <p>No users found..</p>
 <% end %>

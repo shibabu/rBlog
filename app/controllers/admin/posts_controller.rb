@@ -1,4 +1,6 @@
 class Admin::PostsController < Admin::ApplicationController
+  before_action :search_path
+
   def new
     @post=Post.new
   end
@@ -49,7 +51,11 @@ class Admin::PostsController < Admin::ApplicationController
   end
 
   def index
-    @posts=Post.all
+    if params[:search]
+      @posts=Post.search(params[:search]).all.order('created_at DESC').paginate per_page: 5, page: params[:page]
+    else
+      @posts=Post.all.order('created_at DESC').paginate per_page: 5, page: params[:page]
+    end
   end
 
   def show
@@ -59,5 +65,9 @@ class Admin::PostsController < Admin::ApplicationController
   private
   def post_params
     params.require(:post).permit(:title, :category_id, :user_id, :tags, :image, :body)
+  end
+
+  def search_path
+    @spath=admin_posts_path
   end
 end

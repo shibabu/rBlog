@@ -1,4 +1,6 @@
 class Admin::UsersController < Admin::ApplicationController
+  before_action :search_path
+
   def new
     @user=User.new
   end
@@ -49,7 +51,11 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def index
-    @users=User.all
+    if params[:search]
+      @users=User.search(params[:search]).all.order('created_at DESC').paginate per_page: 5, page: params[:page]
+    else
+      @users=User.all.order('created_at DESC').paginate per_page: 5, page: params[:page]
+    end
   end
 
   def show
@@ -59,5 +65,9 @@ class Admin::UsersController < Admin::ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :email, :password)
+  end
+
+  def search_path
+    @spath=admin_users_path
   end
 end

@@ -1,4 +1,5 @@
 <h2 class="page-header">Manage Categories <%= link_to 'Add New', new_admin_category_path, class: 'btn btn-primary' %> </h2>
+<% if @categories.any? %>
 <table class="table table-striped">
   <tr>
     <th>Category Name</th>
@@ -14,3 +15,7 @@
     </tr>
   <% end %>
 </table>
+  <%= will_paginate @categories %>
+<% else %>
+  <p>No categories found..</p>
+<% end %>

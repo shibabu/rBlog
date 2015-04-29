@@ -1,4 +1,6 @@
 class Admin::CategoriesController < Admin::ApplicationController
+  before_action :search_path
+
   def new
     @category=Category.new
   end
@@ -49,7 +51,11 @@ class Admin::CategoriesController < Admin::ApplicationController
   end
 
   def index
-    @categories=Category.all
+    if params[:search]
+      @categories=Category.search(params[:search]).all.order('created_at DESC').paginate per_page: 5, page: params[:page]
+    else
+      @categories=Category.all.order('created_at DESC').paginate per_page: 5, page: params[:page]
+    end
   end
 
   def show
@@ -57,7 +63,12 @@ class Admin::CategoriesController < Admin::ApplicationController
 
 
   private
-    def category_params
-      params.require(:category).permit(:name)
-    end
+  def category_params
+    params.require(:category).permit(:name)
+  end
+
+  def search_path
+    @spath=admin_categories_path
+  end
+
 end
