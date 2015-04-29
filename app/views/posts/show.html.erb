@@ -1,2 +1,11 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<div class="well post-single">
+  <h2 class="page-header"><%= @post.title %></h2>
+  <small>Posted by <%= link_to @post.user.name, admin_user_path(@post.user) %> on
+                    <%= @post.created_at.to_time.strftime '%B %e at %l:%M %p' %></small>
+  <%= image_tag @post.image.url, height: '350px', class: 'center-block' %>
+  <div class="post-body">
+    <%= raw @post.body %>
+  </div>
+</div>
+
+<%= render 'partials/comments' %>

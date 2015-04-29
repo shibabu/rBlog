@@ -1,74 +1,25 @@
-
-<div class="row">
-  <div class="col-md-6">
-    <div class="post">
-      <%= image_tag 'Rails_small' %>
-      <div class="post-content">
-        <h3>Lorem Ipsum</h3>
-        <small>Posted by <a href="#">Shibabu</a> on April 27th 2015</small>
-        <p>
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-          laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-          sunt in culpa qui officia deserunt mollit anim id est laborum."
-        </p>
-        <a class="btn btn-primary btn-block">Read More</a>
+<div id="posts-index">
+  <% if @posts.any? %>
+    <% @posts.each_slice 2 do |posts_slice| %>
+      <div class="row">
+        <% posts_slice.each do |post| %>
+          <div class="col-md-6">
+            <div class="post">
+              <%= image_tag post.image.url, width: '100%' %>
+              <div class="post-content">
+                <h3><%= post.title %></h3>
+                <small>Posted by <%= link_to post.user.name, admin_user_path(post.user) %> on
+                                                          <%= post.created_at.to_time.strftime '%B %e at %l:%M %p' %>
+                </small>
+                <%= raw truncate_html(post.body, length: 250, word_boundary: false, omission: '...') %>
+              </div>
+              <%= link_to 'Read More', post_path(post), class: 'btn btn-primary center-block' %>
+            </div>
+          </div>
+        <% end %>
       </div>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="post">
-      <%= image_tag 'Rails_small' %>
-      <div class="post-content">
-        <h3>Lorem Ipsum</h3>
-        <small>Posted by <a href="#">Shibabu</a> on April 27th 2015</small>
-        <p>
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-          laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-          sunt in culpa qui officia deserunt mollit anim id est laborum."
-        </p>
-        <a class="btn btn-primary btn-block">Read More</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-6">
-    <div class="post">
-      <%= image_tag 'Rails_small' %>
-      <div class="post-content">
-        <h3>Lorem Ipsum</h3>
-        <small>Posted by <a href="#">Shibabu</a> on April 27th 2015</small>
-        <p>
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-          laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-          sunt in culpa qui officia deserunt mollit anim id est laborum."
-        </p>
-        <a class="btn btn-primary btn-block">Read More</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="post">
-      <%= image_tag 'Rails_small' %>
-      <div class="post-content">
-        <h3>Lorem Ipsum</h3>
-        <small>Posted by <a href="#">Shibabu</a> on April 27th 2015</small>
-        <p>
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-          laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-          sunt in culpa qui officia deserunt mollit anim id est laborum."
-        </p>
-        <a class="btn btn-primary btn-block">Read More</a>
-      </div>
-    </div>
-  </div>
+    <% end %>
+    <% else %>
+  <p>No Posts found..</p>
+  <% end %>
 </div>

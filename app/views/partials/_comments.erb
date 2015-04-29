@@ -1,0 +1,41 @@
+<!-- Comments -->
+<div class="comments">
+  <h2 class="page-header"><%= pluralize @post.comments.length, ' Comment' %>  </h2>
+  <% @post.comments.each do |comment| %>
+    <div class="comment">
+      <div class="row">
+        <div class="col-md-3">
+          <%= image_tag "original/User_small.jpg" %>
+        </div>
+        <div class="col-md-9">
+          <div class="well">
+            <h4><%= comment.name %> - <small><%= comment.created_at.to_time.strftime('%B %e at %l:%M %p') %></small></h4>
+            <%= comment.body %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="well add-comment">
+    <h3 class="page-header">Add Comment</h3>
+    <%= form_for [@post, @post.comments.build] do |f| %>
+
+      <div class="form-group">
+        <%= f.label :name %><br>
+        <%= f.text_field :name, class:'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :email %><br>
+        <%= f.text_field :email, class:'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :body %><br>
+        <%= f.text_area :body, class:'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "Submit", class:'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+</div>

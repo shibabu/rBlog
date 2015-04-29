@@ -14,11 +14,13 @@
       <li><%= link_to 'About', about_path %></li>
       <li><%= link_to 'Contact', contact_path %></li>
     </ul>
-    <form class="search-form navbar-form navbar-right" role="search">
+
+    <%= form_tag posts_path, method: :get, id: 'search-form', class: 'search-form navbar-form navbar-right' do %>
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="Search">
+        <%= text_field_tag :search, nil, placeholder: 'Search', class: 'form-control' %>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+      <%= submit_tag :search, class: 'btn btn-primary' %>
+    <% end %>
+
   </div><!--/.nav-collapse -->
 </div>

@@ -1,2 +1,27 @@
-<h1>Categories#show</h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+<h2><%= @category.name %></h2>
+
+<div id="posts-index">
+  <% if @posts.any? %>
+    <% @posts.each_slice 2 do |posts_slice| %>
+      <div class="row">
+        <% posts_slice.each do |post| %>
+          <div class="col-md-6">
+            <div class="post">
+              <%= image_tag post.image.url, width: '100%' %>
+              <div class="post-content">
+                <h3><%= post.title %></h3>
+                <small>Posted by <%= link_to post.user.name, admin_user_path(post.user) %> on
+                  <%= post.created_at.to_time.strftime '%B %e at %l:%M %p' %>
+                </small>
+                <%= raw truncate_html(post.body, length: 250, word_boundary: false, omission: '...') %>
+              </div>
+              <%= link_to 'Read More', post_path(post), class: 'btn btn-primary center-block' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+    <p>No Posts found for this category..</p>
+  <% end %>
+</div>

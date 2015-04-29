@@ -1,6 +1,13 @@
-<div class="list-group">
-  <a href="#" class="list-group-item active">News</a>
-  <a href="#" class="list-group-item">Tutorials</a>
-  <a href="#" class="list-group-item">Releases</a>
-  <a href="#" class="list-group-item">Events</a>
-</div>
+<% if params[:controller]=='posts' and params[:action]=='index' %>
+  <div class="list-group">
+    <% @categories.each do |category| %>
+      <%= link_to category.name, category_path(category), class: 'list-group-item' %>
+    <% end %>
+  </div>
+<% elsif params[:controller]=='categories' || (params[:controller]=='posts' and params[:action]=='show')  %>
+  <div class="list-group">
+    <% @categories.each do |category| %>
+      <%= link_to category.name, category_path(category), class: "list-group-item #{'active' if category.name==@category.name}" %>
+    <% end %>
+  </div>
+<% end %>

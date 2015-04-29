@@ -8,11 +8,11 @@ Rails.application.routes.draw do
 
   get 'about', to: 'about#index'
 
-  get 'comment', to: 'comments#new'
+  get 'category/:id', to: 'categories#show', as: :category
 
-  get 'categories/show'
-
-  resources 'posts', only: [:index, :show]
+  resources 'posts', only: [:index, :show] do
+    resources 'comments', only: :create, on: :member
+  end
 
   namespace :admin do
 
@@ -20,11 +20,11 @@ Rails.application.routes.draw do
 
     resources 'users'
 
-    resources 'comments', only: :destroy
-
     resources 'categories'
 
-    resources 'posts'
+    resources 'posts' do
+      resources 'comments', only: :destroy, on: :member
+    end
 
   end
 
