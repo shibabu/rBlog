@@ -2,15 +2,29 @@
 // listed below.
 //
 // Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
-// or any plugin's vendor/assets/javascripts directory can be referenced here using a relative path.
+// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
 //
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // compiled file.
 //
-// Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
+// Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require prototype
-//= require prototype_ujs
+//= require jquery
+//= require jquery_ujs
 //= require turbolinks
+//= require bootstrap-sprockets
+//
+// WYSIWYG Editor and Plugins
+//= require froala_editor.min.js
+//= require plugins/block_styles.min.js
+//= require plugins/colors.min.js
+//= require plugins/media_manager.min.js
+//= require plugins/tables.min.js
+//= require plugins/video.min.js
+//= require plugins/font_family.min.js
+//= require plugins/font_size.min.js
+//= require plugins/file_upload.min.js
+//= require plugins/lists.min.js
+//= require plugins/char_counter.min.js
 //= require_tree .
