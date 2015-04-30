@@ -20,6 +20,16 @@
             <%= render 'partials/alerts' %>
 
             <div class="well">
+
+              <div id="user-nav" class="pull-right">
+                <% if current_user %>
+                  Logged in as <%= current_user.name.capitalize %> |
+                  <%= link_to 'Logout', admin_logout_path %>
+                <% else %>
+                  <%= link_to 'Login', admin_login_path %>
+                <% end %>
+              </div>
+
               <%= yield %>
             </div>
 

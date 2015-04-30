@@ -1,4 +1,5 @@
 class Admin::PostsController < Admin::ApplicationController
+  before_action :require_user
   before_action :search_path
 
   def new

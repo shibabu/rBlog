@@ -1,2 +1,15 @@
-<h1>Admin::Sessions#new</h1>
-<p>Find me in app/views/admin/sessions/new.html.erb</p>
+
+<%= form_tag admin_sessions_path, class: 'form-signin' do %>
+
+  <!-- Alerts & Messages -->
+  <% if flash[:notice] %>
+    <div class="alert alert-success"><%= flash[:notice] %></div>
+    <% elsif flash[:alert] %>
+    <div class="alert alert-danger"><%= flash[:alert] %></div>
+  <% end %>
+
+  <h1 class="form-signin-heading"><%= link_to 'rBlog' , root_path %></h1>
+  <%= email_field_tag :email, '', class: 'form-control', placeholder: 'Email Address' %>
+  <%= password_field_tag :password, '', class: 'form-control', placeholder: 'Password' %>
+  <%= submit_tag 'Login', class:'btn btn-lg btn-primary btn-block' %>
+<% end %>

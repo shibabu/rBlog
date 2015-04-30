@@ -6,13 +6,13 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="index.html"><h1>rBlog</h1></a>
+    <%= link_to content_tag(:h1, 'rBlog'), root_path, class: 'navbar-brand' %>
   </div>
   <div id="navbar" class="collapse navbar-collapse">
     <ul class="nav navbar-nav">
-      <li class="active"><%= link_to 'Home', root_path %></li>
-      <li><%= link_to 'About', about_path %></li>
-      <li><%= link_to 'Contact', contact_path %></li>
+      <li class="<%= 'active' if params[:controller]=='posts' %>"><%= link_to 'Home', root_path %></li>
+      <li class="<%= 'active' if params[:controller]=='about' %>"><%= link_to 'About', about_path %></li>
+      <li class="<%= 'active' if params[:controller]=='contacts' %>"><%= link_to 'Contact', contact_path %></li>
     </ul>
 
     <%= form_tag posts_path, method: :get, id: 'search-form', class: 'search-form navbar-form navbar-right' do %>

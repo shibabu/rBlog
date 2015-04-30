@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
 
-    resources 'sessions', only: [:new, :create]
+    resources 'sessions', only: [:create]
 
     resources 'users'
 
@@ -25,6 +25,9 @@ Rails.application.routes.draw do
     resources 'posts' do
       resources 'comments', only: :destroy, on: :member
     end
+
+    get 'login', to: 'sessions#new', as: 'login'
+    get 'logout', to: 'sessions#destroy', as: 'logout'
 
   end
 
